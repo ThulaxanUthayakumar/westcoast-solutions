@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Enabled PMO Tools & Capabilities</title>
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+/* ===========================
+   HERO SECTION
+=========================== */
+.ai-hero-section{
+padding:70px 50px 60px;
+background:
+radial-gradient(circle at top center,rgba(212,192,138,.08),transparent 35%),
+linear-gradient(90deg,#020817 0%,#07152d 45%,#0b2045 100%);
+position:relative;
+overflow:hidden;
+}
+.ai-hero-section:before{
+content:"";position:absolute;top:0;left:0;width:100%;height:100%;
+background:repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(255,255,255,.03) 61px);
+pointer-events:none;
+}
+.ai-hero-section:after{
+content:"";position:absolute;right:-200px;top:-100px;width:700px;height:700px;
+background:radial-gradient(circle,rgba(59,130,246,.12),transparent 70%);
+pointer-events:none;
+animation:pulseGlow 6s ease-in-out infinite;
+}
+.ai-hero-content{max-width:900px;position:relative;z-index:2;}
+.ai-badge{
+display:inline-block;padding:10px 22px;
+border:1px solid rgba(212,192,138,.3);background:rgba(212,192,138,.08);
+color:#d4c08a;font-size:13px;font-weight:700;letter-spacing:2px;
+margin-bottom:22px;animation:fadeUp .8s ease;
+}
+.ai-title{
+font-size:78px;font-weight:800;line-height:1.05;
+color:#ffffff;margin-bottom:22px;animation:fadeUp 1s ease;
+}
+.ai-title span{
+color:#8cbcff;
+background:linear-gradient(180deg,#9ac4ff,#6ea8ff);
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.ai-description{
+max-width:850px;font-size:22px;line-height:1.7;
+color:rgba(255,255,255,.75);margin-bottom:36px;animation:fadeUp 1.2s ease;
+}
+.ai-buttons{display:flex;gap:16px;flex-wrap:wrap;animation:fadeUp 1.4s ease;}
+.btn-primary{
+background:linear-gradient(135deg,#2563eb,#3b82f6);color:#fff;
+text-decoration:none;padding:15px 30px;font-size:16px;font-weight:700;
+transition:.4s;position:relative;overflow:hidden;
+}
+.btn-primary:before{
+content:"";position:absolute;top:0;left:-120%;width:100%;height:100%;
+background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);transition:.7s;
+}
+.btn-primary:hover:before{left:120%;}
+.btn-primary:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(37,99,235,.35);}
+.btn-secondary{
+padding:15px 30px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.04);
+color:#fff;text-decoration:none;font-size:16px;font-weight:700;transition:.4s;
+}
+.btn-secondary:hover{background:rgba(255,255,255,.08);transform:translateY(-4px);}
+
+
+
+/* ===========================
+   AI TOOLS SECTION
+=========================== */
+.ai-tools-section{
+position:relative;overflow:hidden;padding:70px 40px;
+background:linear-gradient(90deg,#010817 0%,#03142f 50%,#082247 100%);
+}
+.ai-tools-section::before{
+content:"";position:absolute;inset:0;
+background:repeating-linear-gradient(90deg,transparent,transparent 70px,rgba(255,255,255,.02) 71px);
+}
+.ai-tools-section::after{
+content:"";position:absolute;inset:0;
+background:repeating-linear-gradient(180deg,transparent,transparent 70px,rgba(255,255,255,.02) 71px);
+}
+.section-header{
+text-align:center;max-width:900px;margin:0 auto 40px;position:relative;z-index:2;
+}
+.section-tag{
+display:inline-block;padding:10px 22px;border:1px solid rgba(212,192,138,.35);
+border-radius:50px;color:#d4c08a;font-size:13px;letter-spacing:2px;margin-bottom:18px;
+}
+.section-header .sec-title{
+color:#fff;font-size:52px;margin-bottom:14px;font-weight:700;
+}
+.section-header .sec-desc{color:rgba(255,255,255,.75);font-size:20px;line-height:1.7;}
+.tools-grid{
+position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+.tool-card{
+background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(59,130,246,.08));
+border:1px solid rgba(255,255,255,.08);border-radius:18px;
+backdrop-filter:blur(15px);padding:26px;transition:.4s;
+animation:fadeUp .8s ease forwards;opacity:0;
+}
+.tool-card:nth-child(1){animation-delay:.1s;}
+.tool-card:nth-child(2){animation-delay:.2s;}
+.tool-card:nth-child(3){animation-delay:.3s;}
+.tool-card:nth-child(4){animation-delay:.4s;}
+.tool-card:nth-child(5){animation-delay:.5s;}
+.tool-card:nth-child(6){animation-delay:.6s;}
+.tool-card:hover{
+transform:translateY(-8px);border-color:rgba(212,192,138,.4);
+box-shadow:0 16px 36px rgba(0,0,0,.4),0 0 32px rgba(59,130,246,.15);
+}
+.tool-card h3{color:#fff;font-size:24px;margin-bottom:12px;}
+.tool-card p{color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:14px;font-size:14px;}
+.label{display:block;color:#d4c08a;font-weight:700;margin-top:12px;margin-bottom:5px;font-size:13px;}
+.value{display:block;color:#8ab4ff;margin-bottom:10px;line-height:1.6;font-size:14px;}
+.tool-card ul{list-style:none;padding:0;}
+.tool-card li{color:#fff;margin-bottom:8px;padding-left:22px;position:relative;font-size:14px;}
+.tool-card li::before{content:"●";color:#3b82f6;position:absolute;left:0;}
+
+/* ===========================
+   AI CAPABILITIES - CARDS
+=========================== */
+.ai-capabilities-section{
+position:relative;overflow:hidden;padding:70px 30px;
+background:linear-gradient(90deg,#010817 0%,#03142f 50%,#082247 100%);
+}
+.ai-capabilities-section::before{
+content:"";position:absolute;inset:0;
+background:repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(255,255,255,.02) 81px);
+}
+.ai-capabilities-section::after{
+content:"";position:absolute;inset:0;
+background:repeating-linear-gradient(180deg,transparent,transparent 80px,rgba(255,255,255,.02) 81px);
+}
+.container{max-width:1400px;margin:auto;position:relative;z-index:2;}
+.section-badge{
+display:inline-block;padding:10px 22px;border:1px solid rgba(212,192,138,.35);
+border-radius:50px;color:#d4c08a;font-size:13px;font-weight:600;letter-spacing:2px;margin-bottom:18px;
+}
+.cap-header{text-align:center;max-width:900px;margin:auto auto 40px;}
+.cap-header h2{font-size:52px;font-weight:700;color:#ffffff;margin-bottom:14px;line-height:1.2;}
+.cap-header p{font-size:20px;line-height:1.7;color:rgba(255,255,255,.75);}
+.capabilities-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.capability-card{
+background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(59,130,246,.08));
+border:1px solid rgba(255,255,255,.08);border-radius:18px;
+backdrop-filter:blur(20px);padding:26px;transition:.4s;
+opacity:0;transform:translateY(40px);animation:fadeUp .8s ease forwards;
+}
+.capability-card:nth-child(1){animation-delay:.1s;}
+.capability-card:nth-child(2){animation-delay:.2s;}
+.capability-card:nth-child(3){animation-delay:.3s;}
+.capability-card:nth-child(4){animation-delay:.4s;}
+.capability-card:hover{
+transform:translateY(-10px);border-color:rgba(212,192,138,.4);
+box-shadow:0 16px 36px rgba(0,0,0,.4),0 0 32px rgba(37,99,235,.15);
+}
+.capability-card h3{font-size:19px;font-weight:700;color:#ffffff;margin-bottom:14px;line-height:1.4;}
+.capability-card p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.75);margin-bottom:16px;}
+.capability-card .label{display:block;color:#d4c08a;font-weight:700;margin-bottom:6px;font-size:13px;}
+.capability-card .value{display:block;color:#8ab4ff;margin-bottom:14px;line-height:1.6;font-size:14px;}
+.capability-card ul{list-style:none;padding:0;margin:0;}
+.capability-card li{position:relative;padding-left:22px;margin-bottom:8px;color:#ffffff;font-size:14px;}
+.capability-card li:before{content:"●";position:absolute;left:0;color:#3b82f6;}
+
+/* ===========================
+   AI MOTION DEMO SECTION
+=========================== */
+.ai-motion-section{
+background:linear-gradient(90deg,#010817 0%,#03142f 50%,#082247 100%);
+padding:70px 30px;position:relative;overflow:hidden;
+}
+.ai-motion-section::before{
+content:"";position:absolute;inset:0;
+background:repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(255,255,255,.02) 81px);
+}
+.ai-motion-section::after{
+content:"";position:absolute;inset:0;
+background:repeating-linear-gradient(180deg,transparent,transparent 80px,rgba(255,255,255,.02) 81px);
+}
+.motion-container{max-width:1400px;margin:auto;position:relative;z-index:2;}
+.motion-header{text-align:center;margin-bottom:40px;}
+.motion-header h2{font-size:52px;color:#fff;margin-bottom:14px;}
+.motion-header p{font-size:20px;color:rgba(255,255,255,.75);}
+.ai-motion-demo{
+position:relative;height:480px;
+background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(59,130,246,.08));
+border:1px solid rgba(255,255,255,.08);border-radius:24px;
+overflow:hidden;backdrop-filter:blur(15px);
+}
+.glow-circle{
+position:absolute;width:400px;height:400px;left:50%;top:50%;
+transform:translate(-50%,-50%);
+background:radial-gradient(circle,rgba(59,130,246,.15),transparent 70%);
+animation:pulse 4s ease infinite;
+}
+.ai-node{
+position:absolute;display:flex;align-items:center;justify-content:center;
+width:180px;height:88px;border-radius:18px;color:#fff;font-weight:700;font-size:17px;
+background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(59,130,246,.15));
+border:1px solid rgba(255,255,255,.1);box-shadow:0 0 30px rgba(59,130,246,.18);
+backdrop-filter:blur(20px);animation:float 5s ease-in-out infinite;
+}
+.ai-node.center{
+left:50%;top:50%;transform:translate(-50%,-50%);
+width:220px;height:110px;font-size:24px;z-index:5;
+}
+.ai-node.top{left:50%;top:40px;transform:translateX(-50%);}
+.ai-node.left{left:50px;top:50%;transform:translateY(-50%);}
+.ai-node.right{right:50px;top:50%;transform:translateY(-50%);}
+.ai-node.bottom{left:50%;bottom:40px;transform:translateX(-50%);}
+.line{position:absolute;overflow:hidden;}
+.horizontal-left{
+left:230px;top:50%;width:240px;height:3px;
+background:linear-gradient(90deg,transparent,#3b82f6,transparent);
+animation:flowAnim 2.5s linear infinite;
+}
+.horizontal-right{
+right:230px;top:50%;width:240px;height:3px;
+background:linear-gradient(90deg,transparent,#3b82f6,transparent);
+animation:flowAnim 2.5s linear infinite;
+}
+.vertical{
+left:50%;top:115px;width:3px;height:250px;
+background:linear-gradient(transparent,#3b82f6,transparent);
+animation:flowVertical 2.5s linear infinite;
+}
+
+/* ===========================
+   ROADMAP SECTION
+=========================== */
+.roadmap-section{
+padding:70px 30px;position:relative;overflow:hidden;
+background:linear-gradient(90deg,#010817 0%,#03142f 50%,#082247 100%);
+}
+.roadmap-section::before{
+content:"";position:absolute;inset:0;
+background:repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(255,255,255,.02) 81px);
+}
+.roadmap-section::after{
+content:"";position:absolute;inset:0;
+background:repeating-linear-gradient(180deg,transparent,transparent 80px,rgba(255,255,255,.02) 81px);
+}
+.roadmap-container{max-width:1400px;margin:auto;position:relative;z-index:2;}
+.roadmap-header{text-align:center;max-width:900px;margin:auto auto 50px;}
+.roadmap-badge{
+display:inline-block;padding:10px 22px;border:1px solid rgba(212,192,138,.35);
+border-radius:50px;color:#d4c08a;font-size:13px;letter-spacing:2px;margin-bottom:16px;
+}
+.roadmap-header h2{font-size:52px;color:#fff;margin-bottom:14px;}
+.roadmap-header p{font-size:20px;line-height:1.7;color:rgba(255,255,255,.75);}
+.roadmap-wrapper{position:relative;}
+.roadmap-line{
+position:absolute;top:58px;left:10%;width:80%;height:3px;
+background:linear-gradient(90deg,#2563eb,#60a5fa,#2563eb);
+animation:flowColor 4s linear infinite;
+}
+.roadmap-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;position:relative;z-index:2;}
+.roadmap-card{
+background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(59,130,246,.08));
+border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:26px;
+backdrop-filter:blur(20px);transition:.4s;animation:fadeUp .8s ease forwards;opacity:0;
+}
+.roadmap-card:nth-child(1){animation-delay:.1s;}
+.roadmap-card:nth-child(2){animation-delay:.2s;}
+.roadmap-card:nth-child(3){animation-delay:.3s;}
+.roadmap-card:nth-child(4){animation-delay:.4s;}
+.roadmap-card:nth-child(5){animation-delay:.5s;}
+.roadmap-card:hover{transform:translateY(-10px);box-shadow:0 16px 36px rgba(0,0,0,.4),0 0 32px rgba(59,130,246,.15);}
+.step-number{
+width:52px;height:52px;display:flex;align-items:center;justify-content:center;
+border-radius:50%;font-size:20px;font-weight:700;color:#fff;
+background:linear-gradient(135deg,#2563eb,#60a5fa);
+margin-bottom:18px;box-shadow:0 0 20px rgba(37,99,235,.5);
+animation:pulseBounce 2s infinite;
+}
+.roadmap-card h3{color:#fff;font-size:19px;margin-bottom:10px;}
+.roadmap-card p{color:rgba(255,255,255,.75);line-height:1.7;font-size:14px;}
+
+/* ===========================
+   CTA SECTION
+=========================== */
+.ai-cta-section{
+position:relative;overflow:hidden;padding:70px 30px;
+background:linear-gradient(90deg,#010817 0%,#03142f 45%,#082247 100%);
+}
+.ai-cta-section::before{
+content:"";position:absolute;inset:0;
+background:repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(255,255,255,.02) 81px);
+}
+.ai-cta-section::after{
+content:"";position:absolute;inset:0;
+background:repeating-linear-gradient(180deg,transparent,transparent 80px,rgba(255,255,255,.02) 81px);
+}
+.ai-cta-container{
+max-width:1000px;margin:auto;text-align:center;position:relative;z-index:2;
+padding:60px 50px;
+background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(59,130,246,.08));
+border:1px solid rgba(255,255,255,.08);border-radius:24px;backdrop-filter:blur(20px);
+}
+.ai-cta-container::before{
+content:"";position:absolute;width:500px;height:500px;left:50%;top:50%;
+transform:translate(-50%,-50%);
+background:radial-gradient(circle,rgba(59,130,246,.18),transparent 70%);
+animation:pulseGlow 5s ease-in-out infinite;z-index:-1;
+}
+.cta-badge{
+display:inline-block;padding:10px 22px;border:1px solid rgba(212,192,138,.35);
+border-radius:50px;color:#d4c08a;font-size:13px;font-weight:600;letter-spacing:2px;
+margin-bottom:20px;animation:fadeInUp .8s ease;
+}
+.ai-cta-container h2{
+font-size:58px;font-weight:700;line-height:1.1;color:#ffffff;
+margin-bottom:20px;animation:fadeInUp 1s ease;
+}
+.ai-cta-container p{
+font-size:20px;line-height:1.7;color:rgba(255,255,255,.75);
+max-width:800px;margin:0 auto 36px;animation:fadeInUp 1.2s ease;
+}
+.cta-buttons{
+display:flex;justify-content:center;gap:16px;flex-wrap:wrap;animation:fadeInUp 1.4s ease;
+}
+.cta-primary{
+position:relative;display:inline-flex;align-items:center;gap:8px;
+padding:16px 32px;background:linear-gradient(135deg,#2563eb,#4f8cff);
+color:#fff;font-size:16px;font-weight:600;text-decoration:none;
+border-radius:12px;overflow:hidden;transition:.4s;
+box-shadow:0 8px 24px rgba(37,99,235,.25);
+}
+.cta-primary:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(37,99,235,.35);}
+.cta-primary span{transition:.3s;}
+.cta-primary:hover span{transform:translateX(5px);}
+.cta-secondary{
+display:inline-flex;align-items:center;justify-content:center;
+padding:16px 32px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.03);
+color:#fff;font-size:16px;font-weight:600;text-decoration:none;
+border-radius:12px;transition:.4s;
+}
+.cta-secondary:hover{background:rgba(255,255,255,.08);transform:translateY(-4px);border-color:rgba(212,192,138,.35);}
+
+/* ===========================
+   ANIMATIONS
+=========================== */
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(30px);}
+to{opacity:1;transform:translateY(0);}
+}
+@keyframes fadeInUp{
+from{opacity:0;transform:translateY(30px);}
+to{opacity:1;transform:translateY(0);}
+}
+@keyframes pulseGlow{
+0%{transform:translate(-50%,-50%) scale(1);}
+50%{transform:translate(-50%,-50%) scale(1.08);}
+100%{transform:translate(-50%,-50%) scale(1);}
+}
+@keyframes pulse{
+0%{transform:translate(-50%,-50%) scale(1);}
+50%{transform:translate(-50%,-50%) scale(1.08);}
+100%{transform:translate(-50%,-50%) scale(1);}
+}
+@keyframes pulseBounce{
+0%{transform:scale(1);}
+50%{transform:scale(1.08);}
+100%{transform:scale(1);}
+}
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0px);}
+}
+@keyframes flowAnim{
+0%{background-position:-300px 0;}
+100%{background-position:300px 0;}
+}
+@keyframes flowVertical{
+0%{background-position:0 -300px;}
+100%{background-position:0 300px;}
+}
+@keyframes flowColor{
+0%{filter:hue-rotate(0deg);}
+100%{filter:hue-rotate(30deg);}
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media(max-width:1024px){
+.ai-title{font-size:56px;}
+.ai-description{font-size:19px;}
+.premium-section h2{font-size:44px;}
+.premium-section p{font-size:18px;}
+.section-header .sec-title{font-size:40px;}
+.tools-grid{grid-template-columns:repeat(2,1fr);}
+.capabilities-grid{grid-template-columns:repeat(2,1fr);}
+.cap-header h2{font-size:40px;}
+.motion-header h2{font-size:40px;}
+.roadmap-grid{grid-template-columns:repeat(2,1fr);}
+.roadmap-line{display:none;}
+.roadmap-header h2{font-size:40px;}
+.ai-cta-container h2{font-size:42px;}
+.ai-cta-container p{font-size:18px;}
+}
+@media(max-width:768px){
+.ai-hero-section{padding:55px 20px 45px;}
+.ai-title{font-size:36px;}
+.ai-description{font-size:16px;line-height:1.6;}
+.ai-buttons{flex-direction:column;}
+.btn-primary,.btn-secondary{width:100%;text-align:center;}
+.premium-section{padding:55px 20px;}
+.premium-section h2{font-size:30px;}
+.premium-section p{font-size:15px;}
+.ai-tools-section{padding:55px 20px;}
+.tools-grid{grid-template-columns:1fr;}
+.section-header .sec-title{font-size:32px;}
+.section-header .sec-desc{font-size:15px;}
+.ai-capabilities-section{padding:55px 20px;}
+.capabilities-grid{grid-template-columns:1fr;}
+.cap-header h2{font-size:30px;}
+.cap-header p{font-size:15px;}
+.ai-motion-section{padding:55px 20px;}
+.motion-header h2{font-size:30px;}
+.ai-motion-demo{height:620px;}
+.ai-node.center{width:160px;height:80px;font-size:18px;}
+.ai-node{width:130px;height:65px;font-size:13px;}
+.ai-node.left{left:8px;}
+.ai-node.right{right:8px;}
+.horizontal-left,.horizontal-right{display:none;}
+.roadmap-section{padding:55px 20px;}
+.roadmap-grid{grid-template-columns:1fr;}
+.roadmap-header h2{font-size:32px;}
+.roadmap-header p{font-size:15px;}
+.ai-cta-section{padding:55px 20px;}
+.ai-cta-container{padding:40px 20px;}
+.ai-cta-container h2{font-size:32px;}
+.ai-cta-container p{font-size:15px;line-height:1.6;}
+.cta-buttons{flex-direction:column;}
+.cta-primary,.cta-secondary{width:100%;justify-content:center;}
+}
+
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="ai-hero-section">
+  <div class="ai-hero-content">
+    <div class="ai-badge">✦ AI FOR MODERN PMOs</div>
+    <h1 class="ai-title">AI-Enabled Tools <br><span>& Capabilities</span></h1>
+    <p class="ai-description">Discover intelligent tools and AI capabilities that enhance PMO effectiveness through predictive analytics, automated insights, and smart decision support.</p>
+    <div class="ai-buttons">
+      <a href="#services" class="btn-primary">Explore AI Services →</a>
+      <a href="#contact" class="btn-secondary">Schedule Demo</a>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- AI TOOLS -->
+<section class="ai-tools-section" id="services">
+  <div class="section-header">
+    <span class="section-tag">AI POWERED PMO PLATFORMS</span>
+    <h2 class="sec-title">Top AI PMO Tools</h2>
+    <p class="sec-desc">Compare leading AI-powered PMO platforms and discover the best solution for your organization.</p>
+  </div>
+  <div class="tools-grid">
+    <div class="tool-card">
+      <h3>Epicflow</h3>
+      <p>Multi-project portfolio management with AI-powered capacity planning, bottleneck detection, and scenario simulation.</p>
+      <span class="label">Pricing</span><span class="value">From $22.5/user/month</span>
+      <span class="label">Best For</span><span class="value">Engineering, manufacturing, and complex multi-project PMOs</span>
+      <span class="label">AI Features</span>
+      <ul><li>Bottleneck detection</li><li>Capacity forecasting</li><li>Scenario planning</li></ul>
+    </div>
+    <div class="tool-card">
+      <h3>ClickUp</h3>
+      <p>AI Brain generates tasks, detects duplicates, prioritizes workloads, and provides cross-app insights.</p>
+      <span class="label">Pricing</span><span class="value">Free plan | Brain Max $14/user/month</span>
+      <span class="label">Best For</span><span class="value">IT, Marketing, HR, Hybrid Agile Teams</span>
+      <span class="label">AI Features</span>
+      <ul><li>AI summaries</li><li>Workflow automation</li><li>Workload prioritization</li></ul>
+    </div>
+    <div class="tool-card">
+      <h3>Wrike</h3>
+      <p>ML-driven risk prediction on workloads and overdue tasks with customizable dashboards.</p>
+      <span class="label">Pricing</span><span class="value">From $10/user/month</span>
+      <span class="label">Best For</span><span class="value">Enterprise PMOs & Creative Agencies</span>
+      <span class="label">AI Features</span>
+      <ul><li>Risk prediction</li><li>AI agents</li><li>Smart dashboards</li></ul>
+    </div>
+    <div class="tool-card">
+      <h3>Asana</h3>
+      <p>Smart status updates, AI suggestions, and intelligent workflow execution support.</p>
+      <span class="label">Pricing</span><span class="value">From $13.49/user/month</span>
+      <span class="label">Best For</span><span class="value">Healthcare, Technology & Operations Teams</span>
+      <span class="label">AI Features</span>
+      <ul><li>Smart goals</li><li>AI agents</li><li>Productivity recommendations</li></ul>
+    </div>
+    <div class="tool-card">
+      <h3>Smartsheet</h3>
+      <p>AI-powered spreadsheet portfolio management for enterprise planning and reporting.</p>
+      <span class="label">Pricing</span><span class="value">From $9/user/month</span>
+      <span class="label">Best For</span><span class="value">Construction, Government & Healthcare</span>
+      <span class="label">AI Features</span>
+      <ul><li>AI formulas</li><li>Insight generation</li><li>Template automation</li></ul>
+    </div>
+    <div class="tool-card">
+      <h3>Forecast PSA</h3>
+      <p>Professional services AI with strong focus on profitability tracking and lifecycle automation.</p>
+      <span class="label">Pricing</span><span class="value">Custom Enterprise Pricing</span>
+      <span class="label">Best For</span><span class="value">Consulting & Professional Service Firms</span>
+      <span class="label">AI Features</span>
+      <ul><li>Profitability analytics</li><li>Resource optimization</li><li>Billing automation</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- AI CAPABILITIES CARDS -->
+<section class="ai-capabilities-section">
+  <div class="container">
+    <div class="cap-header">
+      <div class="section-badge">AI CAPABILITIES</div>
+      <h2>Key AI Capabilities Across Tools</h2>
+      <p>Compare the most valuable AI capabilities helping PMOs improve forecasting, reporting, governance, visibility, and strategic decision-making.</p>
+    </div>
+    <div class="capabilities-grid">
+      <div class="capability-card">
+        <h3>Predictive Analytics & Forecasting</h3>
+        <p>AI models predict project delays, budget overruns, and resource constraints before they occur.</p>
+        <span class="label">Best For</span><span class="value">Portfolio risk management and capacity planning</span>
+        <ul><li>Delay prediction</li><li>Budget forecasting</li><li>Resource analysis</li></ul>
+      </div>
+      <div class="capability-card">
+        <h3>Risk Prediction & ML Workload Analysis</h3>
+        <p>Machine learning analyzes workload patterns, identifies overdue trends, and predicts project risks.</p>
+        <span class="label">Best For</span><span class="value">Risk management and project control</span>
+        <ul><li>Risk scoring</li><li>Workload monitoring</li><li>Trend detection</li></ul>
+      </div>
+      <div class="capability-card">
+        <h3>Automated Data Collection & Integration</h3>
+        <p>Intelligent data gathering from Jira, MS Project, Slack, and enterprise systems.</p>
+        <span class="label">Best For</span><span class="value">Unified reporting and portfolio visibility</span>
+        <ul><li>API integrations</li><li>Data synchronization</li><li>Data validation</li></ul>
+      </div>
+      <div class="capability-card">
+        <h3>Natural Language & Smart Summaries</h3>
+        <p>AI generates executive summaries, insights, reports, and stakeholder updates.</p>
+        <span class="label">Best For</span><span class="value">Executive reporting and communication</span>
+        <ul><li>Text generation</li><li>Meeting summaries</li><li>Insight extraction</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI MOTION DEMO -->
+<section class="ai-motion-section">
+  <div class="motion-container">
+    <div class="motion-header">
+      <div class="section-badge">AI CAPABILITIES</div>
+      <h2>Key AI Capabilities Across Tools</h2>
+      <p>Common AI features that deliver efficiency gains across leading PMO platforms.</p>
+    </div>
+    <div class="ai-motion-demo">
+      <div class="glow-circle"></div>
+      <div class="line horizontal-left"></div>
+      <div class="line horizontal-right"></div>
+      <div class="line vertical"></div>
+      <div class="ai-node center">🤖 AI Engine</div>
+      <div class="ai-node top">📊 Forecasting</div>
+      <div class="ai-node left">⚠ Risk Analysis</div>
+      <div class="ai-node right">📈 Reporting</div>
+      <div class="ai-node bottom">📅 Resource Planning</div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="roadmap-section">
+  <div class="roadmap-container">
+    <div class="roadmap-header">
+      <div class="roadmap-badge">IMPLEMENTATION ROADMAP</div>
+      <h2>Implementation Roadmap</h2>
+      <p>A structured 5-step approach to successfully integrate AI capabilities into your PMO.</p>
+    </div>
+    <div class="roadmap-wrapper">
+      <div class="roadmap-line"></div>
+      <div class="roadmap-grid">
+        <div class="roadmap-card"><div class="step-number">1</div><h3>Assess Readiness</h3><p>Evaluate data quality, systems, governance, and organizational maturity.</p></div>
+        <div class="roadmap-card"><div class="step-number">2</div><h3>Define Use Cases</h3><p>Identify the highest-value AI opportunities and business outcomes.</p></div>
+        <div class="roadmap-card"><div class="step-number">3</div><h3>Prepare Data</h3><p>Clean, structure, integrate, and validate organizational data.</p></div>
+        <div class="roadmap-card"><div class="step-number">4</div><h3>Pilot & Learn</h3><p>Run pilot initiatives, validate models, and build stakeholder confidence.</p></div>
+        <div class="roadmap-card"><div class="step-number">5</div><h3>Scale & Optimize</h3><p>Deploy across portfolios and continuously improve performance.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="ai-cta-section" id="contact">
+  <div class="ai-cta-container">
+    <div class="cta-badge">AI TRANSFORMATION JOURNEY</div>
+    <h2>Ready to Implement AI?</h2>
+    <p>Let us help you navigate the complexities of AI-enabled PMO transformation with expert guidance, proven frameworks, and practical implementation strategies that deliver measurable results.</p>
+    <div class="cta-buttons">
+      <a href="#contact" class="cta-primary">Start Implementation <span>→</span></a>
+      <a href="#learn-more" class="cta-secondary">Learn More</a>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
